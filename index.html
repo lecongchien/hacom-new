@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=dba32628-9187-4edb-986e-2c646c960348
+Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<title>HACOM Homepage Demo</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body
+{
+background:#f5f5f5;
+font-family:Arial,sans-serif;
+}
+
+.page-wrapper{
+width:100%;
+}
+
+.block{
+width:100%;
+padding:24px 0;
+}
+
+.block-title{
+max-width:1920px;
+width:100%;
+margin:0 auto 10px;
+font-size:14px;
+font-weight:700;
+color:#666;
+padding:0 16px;
+}
+
+.block-inner{
+max-width:1920px;
+width:100%;
+margin:0 auto;
+background:#fff;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+position:relative;
+}
+
+.single-image img{
+width:100%;
+height:auto;
+display:block;
+}
+
+.slider{
+display:flex;
+overflow-x:auto;
+overflow-y:hidden;
+scroll-behavior:smooth;
+scroll-snap-type:x mandatory;
+scrollbar-width:none;
+-ms-overflow-style:none;
+align-items:flex-start;
+transition:height 0.25s ease;
+}
+
+.slider::-webkit-scrollbar{
+display:none;
+}
+
+.slider img{
+width:100%;
+min-width:100%;
+height:auto;
+flex-shrink:0;
+display:block;
+scroll-snap-align:start;
+}
+/* =========================
+BLOCK 21 - FOOTER
+========================= */
+
+.footer-slider{
+display:flex;
+overflow-x:auto;
+overflow-y:hidden;
+scroll-behavior:smooth;
+scroll-snap-type:x mandatory;
+scrollbar-width:none;
+-ms-overflow-style:none;
+align-items:flex-start;
+transition:height 0.25s ease;
+}
+
+.footer-slider::-webkit-scrollbar{
+display:none;
+}
+
+.footer-slider img{
+min-width:100%;
+width:100%;
+height:auto;
+display:block;
+flex-shrink:0;
+scroll-snap-align:start;
+}
+
+.nav-btn{
+
+position:absolute;
+
+top:50%;
+
+transform:translateY(-50%);
+
+width:48px;
+
+height:48px;
+
+border:none;
+
+border-radius:50%;
+
+background:rgba(0,0,0,.55);
+
+color:#fff;
+
+font-size:18px;
+
+cursor:pointer;
+
+z-index:99;
+
+}
+.block-21 .nav-btn{
+top:33%;
+transform:translateY(-50%);
+}
+
+.prev-btn{
+left:15px;
+}
+
+.next-btn{
+right:15px;
+}
+
+.nav-btn:hover{
+background:rgba(0,0,0,.8);
+}
+
+.block-25 .slider img{
+flex:0 0 1181px;
+width:1181px;
+min-width:1181px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper" id="homepage"></div>
+
+<script>
+
+/* =====================================
+CHỈ CẦN THÊM ẢNH TẠI ĐÂY
+===================================== */
+
+const blocks = {
+
+1:[
+"https://drive.google.com/thumbnail?id=1q7xmObwTZ20PT61GiPjrnCWFsDRmruLA&sz=w3000"
+],
+
+2:[
+"https://drive.google.com/thumbnail?id=1_e3ttRNse8jx6NkTHN-u0wthVUbel_-y&sz=w3000"
+],
+
+3:[
+"https://drive.google.com/thumbnail?id=1RR7UZu8lMYQ61obB196wmbIgoHIiSy5y&sz=w3000"
+],
+
+4:[
+"https://drive.google.com/thumbnail?id=1SSzjKYHhPv8aF-VeFj2YJLz1PT965blD&sz=w3000"
+],
+
+5:[
+"https://drive.google.com/thumbnail?id=1GjQlPJMnc-vJHoR3BA81agNuF5gie1TU&sz=w3000"
+],
+
+6:[
+"https://drive.google.com/thumbnail?id=1yXvOwtJzGZt5buCFnAWX7Yun6hUq2yli&sz=w3000"
+],
+
+7:[
+"https://drive.google.com/thumbnail?id=1qHIp7WM3VrMmSUH8-aaE_9F2hDfDQB8k&sz=w3000"
+],
+
+8:[
+"https://drive.google.com/thumbnail?id=1lheOGdUoKvd7KS85sPg0OGDBaGIB7Mex&sz=w3000"
+],
+
+9:[
+"https://drive.google.com/thumbnail?id=1QMdpg4IRboGo3yYeu-IwTsDhufscTrSJ&sz=w3000"
+],
+
+10:[
+"https://drive.google.com/thumbnail?id=1ZWy_bBNXEuJkQLh5j8jDgHBEjiXkkxJH&sz=w3000"
+],
+
+11:[
+"https://drive.google.com/thumbnail?id=1NM5Ib7AA4gCmw9jOK4jsoenDzHiGqXPu&sz=w3000"
+],
+
+12:[
+"https://drive.google.com/thumbnail?id=15Ie21T22kTBzHuZ4v1kJrybrfwoHvAuD&sz=w3000"
+],
+
+13:[
+"https://drive.google.com/thumbnail?id=1aWogHnpxvjEjZrhuXLy2iwAFOpY319yA&sz=w3000"
+],
+
+14:[
+"https://drive.google.com/thumbnail?id=1wT7ntwp0_QKIxmEYAFFqPWYO3jq2kHkl&sz=w3000"
+],
+
+15:[
+"https://drive.google.com/thumbnail?id=12t-jLMtfaRTzAXnUAVHmvnEhgssPGWE6&sz=w3000"
+],
+
+16:[
+"https://drive.google.com/thumbnail?id=1G8a3-GzpfF2w21m2u6vCGdSsLejkQb0m&sz=w3000"
+],
+
+17:[
+"https://drive.google.com/thumbnail?id=1dOcXpDb5iAM1Yo5jwTMMOm1Aw893IL1E&sz=w3000"
+],
+
+18:[
+"https://drive.google.com/thumbnail?id=1e6h0Zgv6PN1ml87Fek9RYcElBR_0iu-D&sz=w3000"
+],
+
+19:[
+"https://drive.google.com/thumbnail?id=1CPjhuvcHrjgyvYv8X0Y5qkar72cgcdER&sz=w3000"
+],
+
+20:[
+"https://drive.google.com/thumbnail?id=1LYjg-4IOsS83ykKdjItT6Gg3mDdO1cxE&sz=w3000"
+],
+
+21:[
+"https://drive.google.com/thumbnail?id=11k1TdxKkZWw5h2r7cY0g5MZzF0S9bo2a&sz=w3000"
+],
+
+22:[
+"https://drive.google.com/thumbnail?id=1qVsIMnczLrXPc46CLGk0-eMtLjN8aNif&sz=w3000"
+]
+};
+
+/* =====================================
+AUTO RENDER & GOOGLE DRIVE CDN FORMATTER
+===================================== */
+
+function getGoogleDriveId(url) {
+  if (!url) return '';
+  const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/) || url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  return match ? match[1] : '';
+}
+
+// Tự động tối ưu link Google Drive sang CDN trực tiếp lh3 và giữ nguyên kích thước chất lượng gốc (sz=w3000 hoặc s0)
+function formatImageUrl(url) {
+  if (!url) return '';
+  const fileId = getGoogleDriveId(url);
+  if (fileId) {
+    const szMatch = url.match(/[?&]sz=([a-zA-Z0-9_-]+)/);
+    const sz = szMatch ? szMatch[1] : 'w3000';
+    return `https://lh3.googleusercontent.com/d/${fileId}=${sz}`;
+  }
+  return url;
+}
+
+// Tự động fallback sang các URL dự phòng nếu CDN bị chặn hoặc lỗi tải ảnh
+function handleImageError(img) {
+  if (!img) return;
+  const step = parseInt(img.dataset.step || '0', 10);
+  const fileId = img.dataset.fileId;
+  if (!fileId) return;
+
+  if (step === 0) {
+    img.dataset.step = '1';
+    img.src = `https://drive.google.com/thumbnail?id=${fileId}&sz=w3000`;
+  } else if (step === 1) {
+    img.dataset.step = '2';
+    img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+  } else if (step === 2) {
+    img.dataset.step = '3';
+    img.src = `https://drive.google.com/uc?export=view&id=${fileId}`;
+  }
+}
+
+const homepage = document.getElementById('homepage');
+let allHtml = '';
+
+Object.keys(blocks).forEach(blockId => {
+  const images = blocks[blockId];
+  let html = '';
+
+  html += `
+  <div class="block">
+    <div class="block-title">
+      BLOCK ${String(blockId).padStart(2,'0')}
+    </div>
+    <div class="block-inner ${blockId == 21 ? 'block-21' : ''}">
+  `;
+
+  if(images.length === 1){
+    const fileId = getGoogleDriveId(images[0]);
+    const imgSrc = formatImageUrl(images[0]);
+    html += `
+      <div class="single-image">
+        <img src="${imgSrc}" data-file-id="${fileId}" onerror="handleImageError(this)" loading="lazy" referrerpolicy="no-referrer" alt="BLOCK ${String(blockId).padStart(2,'0')}">
+      </div>
+    `;
+  } else {
+    html += `
+      <button class="nav-btn prev-btn" onclick="slidePrev('slider-${blockId}')">◀</button>
+      <div class="${blockId == 21 ? 'footer-slider' : 'slider'}" id="slider-${blockId}">
+    `;
+
+    images.forEach((img, idx) => {
+      const fileId = getGoogleDriveId(img);
+      const imgSrc = formatImageUrl(img);
+      html += `
+        <img src="${imgSrc}" data-file-id="${fileId}" onerror="handleImageError(this)" loading="lazy" referrerpolicy="no-referrer" alt="BLOCK ${String(blockId).padStart(2,'0')} - ${idx + 1}">
+      `;
+    });
+
+    html += `
+      </div>
+      <button class="nav-btn next-btn" onclick="slideNext('slider-${blockId}')">▶</button>
+    `;
+  }
+
+  html += `
+    </div>
+  </div>
+  `;
+
+  allHtml += html;
+});
+
+homepage.innerHTML = allHtml;
+
+/* =====================================
+TỰ ĐỘNG CĂN CHỈNH CHIỀU CAO (XÓA KHOẢNG TRẮNG DƯ THỪA)
+===================================== */
+
+function updateSliderHeight(slider) {
+if (!slider) return;
+const width = slider.offsetWidth || 1920;
+const index = Math.round(slider.scrollLeft / width);
+const imgs = slider.querySelectorAll('img');
+const currentImg = imgs[index];
+if (currentImg) {
+if (currentImg.offsetHeight > 0) {
+slider.style.height = currentImg.offsetHeight + 'px';
+} else if (currentImg.naturalWidth && currentImg.naturalHeight) {
+slider.style.height = Math.round(width * currentImg.naturalHeight / currentImg.naturalWidth) + 'px';
+}
+}
+}
+
+// Lắng nghe sự kiện tải ảnh và cuộn trang để cập nhật đúng chiều cao theo ảnh đang xem
+document.querySelectorAll('.slider, .footer-slider').forEach(slider => {
+slider.querySelectorAll('img').forEach((img, idx) => {
+img.addEventListener('load', () => {
+const width = slider.offsetWidth || 1920;
+const activeIdx = Math.round(slider.scrollLeft / width);
+if (activeIdx === idx || !slider.style.height) {
+updateSliderHeight(slider);
+}
+});
+});
+
+let scrollTimeout;
+slider.addEventListener('scroll', () => {
+clearTimeout(scrollTimeout);
+scrollTimeout = setTimeout(() => {
+updateSliderHeight(slider);
+}, 50);
+}, { passive: true });
+
+// Khởi tạo chiều cao ban đầu
+updateSliderHeight(slider);
+});
+
+window.addEventListener('resize', () => {
+document.querySelectorAll('.slider, .footer-slider').forEach(updateSliderHeight);
+});
+
+/* =====================================
+NEXT / PREV
+===================================== */
+
+function slideNext(id){
+const slider = document.getElementById(id);
+if (!slider) return;
+const width = slider.offsetWidth || 1920;
+const nextScroll = slider.scrollLeft + width;
+const nextIndex = Math.round(nextScroll / width);
+const imgs = slider.querySelectorAll('img');
+if (nextIndex < imgs.length && imgs[nextIndex]) {
+const img = imgs[nextIndex];
+if (img.offsetHeight > 0) {
+slider.style.height = img.offsetHeight + 'px';
+} else if (img.naturalWidth && img.naturalHeight) {
+slider.style.height = Math.round(width * img.naturalHeight / img.naturalWidth) + 'px';
+}
+}
+slider.scrollBy({
+left: width,
+behavior: 'smooth'
+});
+}
+
+function slidePrev(id){
+const slider = document.getElementById(id);
+if (!slider) return;
+const width = slider.offsetWidth || 1920;
+const prevScroll = Math.max(0, slider.scrollLeft - width);
+const prevIndex = Math.round(prevScroll / width);
+const imgs = slider.querySelectorAll('img');
+if (imgs[prevIndex]) {
+const img = imgs[prevIndex];
+if (img.offsetHeight > 0) {
+slider.style.height = img.offsetHeight + 'px';
+} else if (img.naturalWidth && img.naturalHeight) {
+slider.style.height = Math.round(width * img.naturalHeight / img.naturalWidth) + 'px';
+}
+}
+slider.scrollBy({
+left: -width,
+behavior: 'smooth'
+});
+}
+
+</script>
+
+</body>
+</html><script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="dba32628-9187-4edb-986e-2c646c960348" data-app-host="app.netlify.com" data-account-tier="free"></script>
+
+
